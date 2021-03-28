@@ -1,0 +1,3 @@
+Would like to add room types for each hotel
+
+Would like to add room pricing
