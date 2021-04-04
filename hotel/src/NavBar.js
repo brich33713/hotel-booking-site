@@ -1,5 +1,5 @@
 import react, { useState } from 'react'
-import logo from './images/logo.svg'
+import logo from './images/logo.png'
 import {FaAlignRight} from 'react-icons/fa'
 import {Link} from 'react-router-dom'
 import './App.css'
@@ -23,7 +23,7 @@ const NavBar = () => {
                 <ul className={ulClass}>
                     <li>
                         <Link to="/">Home</Link>
-                        <Link to="/rooms">Rooms</Link>
+                        {/* <Link to="/hotels">Hotels</Link> */}
                     </li>
                 </ul>
             </div>

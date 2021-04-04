@@ -1,6 +1,7 @@
 import react, { useState } from 'react'
-import Title from './Title'
+import Title from '../Title'
 import {FaCocktail, FaHiking, FaShuttleVan, FaBeer} from 'react-icons/fa'
+import Banner from '../Banner'
 
 
 const Services = () => {
@@ -27,9 +28,10 @@ const Services = () => {
 
     return (
         <div className='services'>
-            <Title title='services' />
+            <Title title='how it works' />
             <div className='services-center'>
-                {services.map(service => {
+                <h3>Send Text: get me a (# beds) in (city name) to (415)903-7060</h3>
+                {/* {services.map(service => {
                     return (
                         <div className='services' key={service.title}>
                             <span>{service.icon}</span>
@@ -37,7 +39,7 @@ const Services = () => {
                             <p>{service.info}</p>
                         </div>
                     )
-                })}
+                })} */}
             </div>
         </div>
     )

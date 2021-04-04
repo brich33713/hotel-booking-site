@@ -1,0 +1,5 @@
+Would like to add room types for each hotel
+
+Would like to add room pricing
+
+Update images for hotels so they pop out in another component not go to an external link

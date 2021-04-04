@@ -43,6 +43,27 @@ class Image(db.Model):
     src = db.Column(db.Text,nullable=False)
     alt = db.Column(db.Text)
 
+class User(db.Model):
+    __tablename__ = 'users'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.Text)
+    phone = db.Column(db.Text, nullable=False)
+
+    # going to be used to keep track of where user was in process
+    step = db.Column(db.Text,default='registration')
+
+    # store last message, so along with process will allow continuation
+    message = db.Column(db.Text)
+
+    search_city = db.Column(db.ForeignKey('cities.id'))
+
+class UserHotel(db.Model):
+    __tablename__ = "userhotels"
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.ForeignKey('users.id',ondelete='CASCADE'),nullable=False)
+    hotel_id = db.Column(db.ForeignKey('hotels.id'),nullable=False)
+    city_id = db.Column(db.ForeignKey('cities.id'),nullable=False) 
+
 class Booking(db.Model):
     def __repr__(self):
         """Show booking info"""
@@ -51,5 +72,6 @@ class Booking(db.Model):
         
     __tablename__ = 'bookings'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.ForeignKey('users.id',ondelete='CASCADE'),nullable=False)
     hotel_id = db.Column(db.ForeignKey('hotels.id'),nullable=False)
     name = db.Column(db.Text,nullable=False)

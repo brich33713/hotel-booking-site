@@ -2,18 +2,18 @@ import react from 'react'
 import Hero from './Hero';
 import Banner from './Banner'
 import {Link} from 'react-router-dom'
-import RoomsContainer from './RoomsContainer'
+import RoomsContainer from './HotelsContainer'
 
 
-const Rooms = () => {
+const Hotels = () => {
     return(
         <div>
         <Hero hero="roomsHero">
-            <Banner title="our rooms" children={<Link to="/" className='btn-primary' />} />
+            <Banner title="our hotels" children={<Link to="/" className='btn-primary' />} />
         </Hero>
         <RoomsContainer />
         </div>
     )
 }
 
-export default Rooms;
+export default Hotels;

@@ -1,9 +1,9 @@
 import react, { useContext } from 'react'
-import RoomContext from './RoomContext';
+import HotelContext from './HotelContext';
 import {Link} from 'react-router-dom'
 
-const Room = ({room}) => {
-    const {name,id,images,price} = room;
+const Hotel = ({hotel}) => {
+    const {name,id,images,price} = hotel;
     return(
         <div className="room">
             <div className='img-container'>
@@ -12,7 +12,7 @@ const Room = ({room}) => {
                     <h6>${price}</h6>
                     <p>per night</p>
                 </div>
-                <Link to={`/room/${id}`} className='btn-primary room-link'>
+                <Link to={`/hotel/${id}`} className='btn-primary room-link'>
                     View
                 </Link>
             </div>
@@ -21,4 +21,4 @@ const Room = ({room}) => {
     )
 }
 
-export default Room;
+export default Hotel;

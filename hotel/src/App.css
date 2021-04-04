@@ -112,8 +112,8 @@ h6 {
   color: var(--primaryColor);
 }
 .nav-links {
-  /* height: 0;
-  overflow: hidden; */
+  height: 0;
+  overflow: hidden;
   transition: var(--mainTransition);
   list-style-type: none;
 }
@@ -137,7 +137,7 @@ h6 {
 }
 @media screen and (min-width: 768px) {
   .nav-btn {
-    /* display: none; */
+    display: none;
   }
   .nav-center {
     max-width: 1170px;
