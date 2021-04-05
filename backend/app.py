@@ -15,6 +15,11 @@ BASE_URL = 'http://c62a282c6b4c.ngrok.io'
 #Twilio credentials
 account_sid = 'REPLACE ME'
 auth_token = 'REPLACE ME'
+from_number = 'REPLACE ME'
+
+# API credentials
+api_password = "REPLACE ME",
+api_username = "REPLACE ME"
 client = Client(account_sid, auth_token)
 
 @app.route("/api/hotel/<id>",methods=["GET"])
@@ -58,8 +63,8 @@ def addCity():
         url = "https://hotels4.p.rapidapi.com/locations/search"
         querystring = {"query":city,"locale":"en_US"}
         headers = {
-        'x-rapidapi-key': "bda788308fmsh78144b62705d0f9p18ffb6jsn34c349cac67a",
-        'x-rapidapi-host': "hotels4.p.rapidapi.com"
+        'x-rapidapi-key': api_password,
+        'x-rapidapi-host': api_username
         }
         response = requests.request("GET", url, headers=headers, params=querystring)
         
@@ -87,8 +92,8 @@ def addHotel(cityId):
         "pageSize": '25',"adults1": '1'
         }
         headers = {
-        'x-rapidapi-key': "bda788308fmsh78144b62705d0f9p18ffb6jsn34c349cac67a",
-        'x-rapidapi-host': "hotels4.p.rapidapi.com"
+        'x-rapidapi-key': api_password,
+        'x-rapidapi-host': api_username
         }
         response = requests.request("GET", url, headers=headers, params=querystring)
         response = response.json()["data"]["body"]["searchResults"]["results"]
@@ -105,8 +110,8 @@ def addHotel(cityId):
         url = "https://hotels4.p.rapidapi.com/properties/get-details"
         querystring = {"id":hotelData["id"]}
         headers = {
-        'x-rapidapi-key': "bda788308fmsh78144b62705d0f9p18ffb6jsn34c349cac67a",
-        'x-rapidapi-host': "hotels4.p.rapidapi.com"
+        'x-rapidapi-key': api_password,
+        'x-rapidapi-host': api_username
         }
         response = requests.request("GET", url, headers=headers, params=querystring)
         description = response.json()["data"]["body"]["propertyDescription"]["tagline"][0]
@@ -129,8 +134,8 @@ def addHotel(cityId):
         url = "https://hotels4.p.rapidapi.com/properties/get-hotel-photos"
         querystring = {"id":hotelData["id"]}
         headers = {
-        'x-rapidapi-key': "bda788308fmsh78144b62705d0f9p18ffb6jsn34c349cac67a",
-        'x-rapidapi-host': "hotels4.p.rapidapi.com"
+        'x-rapidapi-key': api_password,
+        'x-rapidapi-host': api_username
         }
         response = requests.request("GET", url, headers=headers, params=querystring)
         
@@ -217,7 +222,7 @@ def sms():
                 .create(
                     body = 'Welcome to Booking Site! What is your name? Please respond with only: FirstName LastName' \
                         .format(),
-                     from_='+14159037060',
+                     from_=from_number,
                      to=number
                  )
         
@@ -237,7 +242,7 @@ def sms():
                 .create(
                     body = 'Nice to meet you {}. Let me get you that {} one moment' \
                         .format(user.name,respond_message),
-                     from_='+14159037060',
+                     from_=from_number,
                      to=number
                  )
 
@@ -254,7 +259,7 @@ def sms():
                 .create(
                     body = 'Sorry {}, no more hotels available in {}' \
                         .format(user.name,user.search_city),
-                     from_='+14159037060',
+                     from_=from_number,
                      to=number
                 )
                 return {"endpoint":"No hotels left to send"}
@@ -279,7 +284,7 @@ def sms():
                 .create(
                     body = 'Congratulations {}! Your stay has been booked. Confirmation #{}' \
                         .format(user.name,new_booking.id),
-                     from_='+14159037060',
+                     from_=from_number,
                      to=number
                 )
             return {"endpoint":"Hotel Booked"}
@@ -292,7 +297,7 @@ def sms():
                 .create(
                     body = 'Ok. We look forward to hearing from you again soon' \
                         .format(),
-                     from_='+14159037060',
+                     from_=from_number,
                      to=number
                 )
             return {"endpoint":"No more hotels requested"}
@@ -306,7 +311,7 @@ def sms():
                 .create(
                     body = 'Sorry {}, no more hotels available in {}' \
                         .format(user.name,user.search_city),
-                     from_='+14159037060',
+                     from_=from_number,
                      to=number
                 )
                 return {"endpoint":"No hotels left to send"}
@@ -320,7 +325,7 @@ def sms():
                 .create(
                     body = 'Sorry unable to process that response. Please say either yes or no.' \
                         .format(),
-                     from_='+14159037060',
+                     from_=from_number,
                      to=number
                 )
             return {"endpoint":"Invalid response"}
@@ -342,7 +347,7 @@ def sms():
                 .create(
                     body = 'No hotels yet available in {}' \
                         .format(' '.join(message_body[3:])),
-                     from_='+14159037060',
+                     from_=from_number,
                      to=number
                  )
                 
@@ -377,7 +382,7 @@ def sms():
         .create(
         body = '{}. Click the following link >> {}' \
             .format(response,hotel_url),
-        from_='+14159037060',
+        from_=from_number,
         to=number
         )
 
@@ -386,7 +391,7 @@ def sms():
         .create(
         body = 'Would you like to book this hotel?' \
             .format(user.name),
-        from_='+14159037060',
+        from_=from_number,
         to=number
         )            
     return {"endpoint": "Message processed, hotel sent"}
