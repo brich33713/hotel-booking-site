@@ -1,4 +1,8 @@
-**To Start Application you will need 2 terminals, database (Postgres), twilio account, and public address (ngrok)**
+**To Start Application you will need 2 terminals, HOTEL API credentials, database (Postgres), twilio account, and public address (ngrok)**
+
+Replace Twilio credentials on lines 16,17, and 18 of app.py
+Replace API credentials on line 21 and 22 of app.py
+
 
 cd ../hotel
 
