@@ -9,6 +9,8 @@ cd ../hotel
 1. npm start
 2. npm start-backend
 3. Use ngrok or public address to forward to
+4. Update route in twilio with public address
+5. Replace BASE URL without / at the end on line 14 of app.py file
 
 Seed database:
 
